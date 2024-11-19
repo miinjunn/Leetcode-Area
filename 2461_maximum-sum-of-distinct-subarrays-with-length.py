@@ -4,22 +4,55 @@ from collections import defaultdict
 
 class Solution:
     # BASIC CODE----------------------------------------------------------------------------------------
+    # def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        # if len(set(nums)) < k:
+        #     return 0
+
+        # temp = nums[:k]
+        # maks = 0
+        # if len(set(temp)) == k:
+        #     maks = sum(temp)
+
+        # for i in range(k, len(nums)):
+        #     temp.pop(0)
+        #     temp.append(nums[i])
+        #     if  len(set(temp)) == k:
+        #         maks = max(maks, sum(temp))
+
+        # return maks
+
+    # OPTIMIZE CODE----------------------------------------------------------------------------------------
     def maximumSubarraySum(self, nums: List[int], k: int) -> int:
-        if len(set(nums)) < k:
+        if len(nums) < k:
             return 0
 
-        temp = nums[:k]
-        maks = 0
-        if len(set(temp)) == k:
-            maks = sum(temp)
+        count = defaultdict(int)
+        current_sum = 0
+        max_sum = 0
+
+        for i in range(k):
+            count[nums[i]] += 1
+            current_sum += nums[i]
+
+        if len(count) == k:
+            max_sum = current_sum
 
         for i in range(k, len(nums)):
-            temp.pop(0)
-            temp.append(nums[i])
-            if  len(set(temp)) == k:
-                maks = max(maks, sum(temp))
+            outgoing = nums[i - k]
+            count[outgoing] -= 1
+            current_sum -= outgoing
 
-        return maks
+            if count[outgoing] == 0:
+                del count[outgoing]
+
+            incoming = nums[i]
+            count[incoming] += 1
+            current_sum += incoming
+
+            if len(count) == k:
+                max_sum = max(max_sum, current_sum)
+
+        return max_sum
 
 
 if __name__ == "__main__":
