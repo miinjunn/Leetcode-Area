@@ -36,8 +36,23 @@ if __name__ == "__main__":
     num5 = 18
     # Output: 9
 
+    num6 = 27
+    # Output: 9
+
+    num7 = 0
+    # Output: 0
+
+    num8 = 19
+    # Output: 1
+
+
     print(test.addDigits(num1))
     print(test.addDigits(num2))
     print(test.addDigits(num3))
     print(test.addDigits(num4))
     print(test.addDigits(num5))
+    print(test.addDigits(num6))
+    print(test.addDigits(num7))
+    print(test.addDigits(num8))
+
+    
