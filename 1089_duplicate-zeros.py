@@ -4,13 +4,24 @@ from typing import List
 
 class Solution:
     def duplicateZeros(self, arr: List[int]) -> None:
+        # in-place array modification
+        i = 0
+        n = len(arr)
+        while i < n:
+            if arr[i] != 0:
+                i += 1
+            else:
+                arr.insert(i, 0)
+                arr.pop()
+                i += 2
+
         # solusi create new array, then replace old arr with new arr
-        result = []
-        for i in arr:
-            if i == 0:
-                result.append(i)
-            result.append(i)
-        arr[:] = result[:len(arr)]
+        # result = []
+        # for i in arr:
+        #     if i == 0:
+        #         result.append(i)
+        #     result.append(i)
+        # arr[:] = result[:len(arr)]
 
         
 if __name__ == "__main__":
