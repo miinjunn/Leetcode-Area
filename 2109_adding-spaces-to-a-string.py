@@ -4,10 +4,23 @@ from typing import List
 class Solution:
     def addSpaces(self, s: str, spaces: List[int]) -> str:
         # BASIC ---------------------------------------------------------------
-        s = [i for i in s]
-        for i in range(len(spaces)-1, -1, -1):
-            s.insert(spaces[i], ' ')
-        return ''.join(s)
+        # s = [i for i in s]
+        # for i in range(len(spaces)-1, -1, -1):
+        #     s.insert(spaces[i], ' ')
+        # return ''.join(s)
+
+        # OPTIMIZE ------------------------------------------------------------
+        stop = spaces[0]
+        result = s[:stop]
+        for i in range(1, len(spaces)):
+            temp = s[stop:spaces[i]]
+            result += " " + temp
+            stop = spaces[i]
+
+        if stop < len(s):
+            result += " " + s[stop:]
+
+        return result
 
 
 if __name__ == "__main__":
