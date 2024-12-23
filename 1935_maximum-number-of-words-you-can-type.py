@@ -1,6 +1,15 @@
 class Solution:
     def canBeTypedWords(self, text: str, brokenLetters: str) -> int:
-        ...
+        words = text.split()
+        broken = [i for i in brokenLetters]
+
+        for i in broken:
+            for j in range(len(words)):
+                if i in words[j]:
+                    words[j] = ''
+
+        counter = [1 for i in words if i != '']
+        return len(counter)
 
 
 if __name__ == "__main__":
@@ -20,3 +29,11 @@ if __name__ == "__main__":
     brokenLetters3 = "e"
     # Output: 0
     # Explanation: We cannot type either word because the 'e' key is broken.
+
+    text4 = "abc de"
+    brokenLetters4 = ""
+
+    print(test.canBeTypedWords(text1, brokenLetters1))
+    print(test.canBeTypedWords(text2, brokenLetters2))
+    print(test.canBeTypedWords(text3, brokenLetters3))
+    print(test.canBeTypedWords(text4, brokenLetters4))
