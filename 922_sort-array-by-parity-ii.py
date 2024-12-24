@@ -28,5 +28,9 @@ if __name__ == "__main__":
     nums2 = [2, 3]
     # Output: [2,3]
 
+    nums3 = [1,8]
+    # Output: [8,1]
+
     print(test.sortArrayByParityII(nums1))
     print(test.sortArrayByParityII(nums2))
+    print(test.sortArrayByParityII(nums3))
