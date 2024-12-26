@@ -4,16 +4,34 @@ from typing import List
 
 class Solution:
     # basic method ------------------------------------------------
+    # def nextPermutation(self, nums: List[int]) -> None:
+    #     n = sorted(nums)
+    #     temp = sorted(set(permutations(n)))
+    #     print(temp)
+    #     if tuple(nums) in temp:
+    #         posisi = temp.index(tuple(nums))
+    #         if posisi == len(temp)-1:
+    #             nums[:] = temp[0]
+    #         else:
+    #             nums[:] = temp[posisi+1]
+
+    # optimize method ------------------------------------------------
     def nextPermutation(self, nums: List[int]) -> None:
-        n = sorted(nums)
-        temp = sorted(set(permutations(n)))
-        print(temp)
-        if tuple(nums) in temp:
-            posisi = temp.index(tuple(nums))
-            if posisi == len(temp)-1:
-                nums[:] = temp[0]
-            else:
-                nums[:] = temp[posisi+1]
+        n = len(nums)
+        if n <= 1:
+            return
+
+        i = n - 2
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+
+        if i >= 0:
+            j = n - 1
+            while nums[j] <= nums[i]:
+                j -= 1
+            nums[i], nums[j] = nums[j], nums[i]
+
+        nums[i + 1:] = reversed(nums[i + 1:])
 
 
 if __name__ == "__main__":
