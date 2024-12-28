@@ -2,11 +2,20 @@ from typing import List
 
 
 class Solution:
+    # BASIC METHOD --------------
+    # def arrayRankTransform(self, arr: List[int]) -> List[int]:
+    # rank = sorted(set(arr))
+    # result = []
+    # for i in arr:
+    #     result.append(rank.index(i)+1)
+    # return result
+
+    # OPTIMIZED METHOD --------------
     def arrayRankTransform(self, arr: List[int]) -> List[int]:
         rank = sorted(set(arr))
-        result = []
-        for i in arr:
-            result.append(rank.index(i)+1)
+        rank_map = {vl: ky+1 for ky, vl in enumerate(rank)}
+        print(f'rank_map: {rank_map}')
+        result = [rank_map[vl] for vl in arr]
         return result
 
 
