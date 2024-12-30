@@ -1,22 +1,33 @@
-class Solution:
-    def is_prime(self, x):
-        if x < 2:
-            return False
-        elif x == 2:
-            return True
-        for n in range(2, x):
-            if x % n == 0:
-                return False
-        return True
 
+# BASIC METHOD ----------------------------
+# class Solution:
+    # def is_prime(self, x):
+    #     if x < 2:
+    #         return False
+    #     elif x == 2:
+    #         return True
+    #     for n in range(2, x):
+    #         if x % n == 0:
+    #             return False
+    #     return True
+
+    # def countPrimeSetBits(self, left: int, right: int) -> int:
+    #     counter = 0
+    #     for i in range(left, right+1):
+    #         temp = bin(i).count("1")
+    #         if self.is_prime(temp) == True:
+    #             counter += 1
+    #     return counter
+
+# OPTIMIZED METHOD ----------------------------
+class Solution:
     def countPrimeSetBits(self, left: int, right: int) -> int:
+        primes = {2, 3, 5, 7, 11, 13, 17, 19}
         counter = 0
         for i in range(left, right+1):
-            temp = bin(i).count("1")
-            if self.is_prime(temp) == True:
+            if i.bit_count() in primes:
                 counter += 1
         return counter
-
 
 if __name__ == "__main__":
     test = Solution()
