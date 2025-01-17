@@ -3,8 +3,23 @@ from typing import List
 
 class Solution:
     def findRelativeRanks(self, score: List[int]) -> List[str]:
+        result = []
         temp = sorted(score, reverse=True)
-        return temp
+        
+        for i in score:
+            if i == temp[0]:
+                result.append("Gold Medal")
+
+            elif i == temp[1]:
+                result.append("Silver Medal")
+
+            elif i == temp[2]:
+                result.append("Bronze Medal")
+            else:
+                result.append(str(temp.index(i)+1))
+
+        return result
+
 
 
 if __name__ == "__main__":
@@ -18,4 +33,5 @@ if __name__ == "__main__":
     # Output: ["Gold Medal","5","Bronze Medal","Silver Medal","4"]
     # Explanation: The placements are [1st, 5th, 3rd, 2nd, 4th].
 
+    print(test.findRelativeRanks(score1))
     print(test.findRelativeRanks(score2))
