@@ -22,7 +22,7 @@ class Solution:
 
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  
     test = Solution()
 
     score1 = [5, 4, 3, 2, 1]
