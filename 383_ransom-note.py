@@ -6,17 +6,32 @@ class Solution:
         r = Counter(ransomNote)
         m = Counter(magazine)
 
+        # CARA-1 --------------------------------------------
+        # c = 0
+        # for i in r:
+        #     if i in m:
+        #         if r[i] <= m[i]:
+        #             c = 1
+        #         else:
+        #             c = 0
+        #             break
+        #     else:
+        #         c = 0
+        #         break
+        # return True if c == 1 else False
+
+        # CARA-2 --------------------------------------------
         c = 0
         for i in r:
-            if i in m:
-                if r[i] <= m[i]:
-                    c = 1
-                else:
-                    c = 0
-                    break
+            if i not in m:
+                return False
+
+            elif r[i] > m[i]:
+                return False
+
             else:
-                c = 0
-                break
+                c = 1
+
         return True if c == 1 else False
 
 
@@ -39,7 +54,12 @@ if __name__ == "__main__":
     magazine4 = "hjibagacbhadfaefdjaeaebgi"
     # Output: false
 
+    ransomNote5 = "ihgg"
+    magazine5 = "ch"
+    # Output: false
+
     print(test.canConstruct(ransomNote1, magazine1))
     print(test.canConstruct(ransomNote2, magazine2))
     print(test.canConstruct(ransomNote3, magazine3))
     print(test.canConstruct(ransomNote4, magazine4))
+    print(test.canConstruct(ransomNote5, magazine5))
