@@ -1,12 +1,13 @@
-from collections import Counter
+# from collections import Counter
 
 
 class Solution:
     def areAlmostEqual(self, s1: str, s2: str) -> bool:
+        if sorted(s1) != sorted(s2):
+            return False
+        
         counter = 0
         cek = 0
-        kamus1 = Counter(s1)
-        kamus2 = Counter(s2)
 
         for i in range(len(s1)):
             if counter > 2 or cek > 0:
@@ -14,16 +15,10 @@ class Solution:
 
             if s1[i] != s2[i]:
                 counter += 1
-            if s1[i] in s2:
-                if kamus1[s1[i]] != kamus2[s1[i]]:
-                    return False
-            else:
+            if s1[i] not in s2:
                 cek += 1
 
-            if s2[i] in s1:
-                if kamus1[s2[i]] != kamus2[s2[i]]:
-                    return False
-            else:
+            if s2[i] not in s1:
                 cek += 1
 
         return counter % 2 == 0
